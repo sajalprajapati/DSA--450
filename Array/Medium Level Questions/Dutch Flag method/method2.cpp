@@ -4,44 +4,31 @@ using namespace std;
 
 void sortColors(vector<int>& nums) 
 {
-  //[2,0,2,1,1,0];
-   
-  int countZero=0;
-  int countOne=0;
-  int countTwo=0;
+  int low=0;
+  int middle=0;
+  int high=nums.size()-1;
 
-  for(int i=0;i<nums.size();i++)
+  int i=0;
+  while(i<nums.size())
   {
-    if(nums[i]==0)
+    if(nums[middle]==0)
     {
-        countZero++;
+        swap(nums[low],nums[middle]);
+        low++;
+        middle++;
     }
 
-    else if(nums[i]==1)
+    else if(nums[middle]==1)
     {
-        countOne++;
+        middle++;
     }
-    else
+
+    else 
     {
-        countTwo++;
+        swap(nums[middle],nums[high]);
+        high--;
     }
-  }
-
-  nums.clear();
-
-  for( int i=0;i<countZero;i++)
-  {
-    nums.push_back(0);
-  }
-
-  for(int i=0;i<countOne;i++)
-  {
-   nums.push_back(1);
-  }
-
-  for(int i=0;i<countTwo;i++)
-  {
-   nums.push_back(2);
+    i++;
   }
   return ;
 }
