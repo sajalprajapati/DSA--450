@@ -5,30 +5,50 @@
 using namespace std;
 
 int majorityElement(vector<int>& nums) {
-       
-    int n = nums.size(); // Correct way to get size
-    sort(nums.begin(), nums.end()); // Sorting the array
+    
+  int element;
+  int count=0;
 
-    int criteria=(nums.size()/2);
 
-    int j=0;
-    int i=0;
-    while(j<n)
+  //I will find the element that appears maximum times:
+  for(int i=0;i<nums.size();i++)
+  {
+    if(count==0)
     {
-        if(nums[i]!=nums[j])
-        {
-            int length=j-i;
-            if(length>criteria)
-            return nums[i];
-        }
-        else
-        {
-            i=j;
-        }
+      element=nums[i];
+      count=1;
+    }
 
-        j++;
-    } 
-    return -1;
+    else if(nums[i]==element)
+    {
+      count++;
+    }
+    else
+    {
+      count--;
+    }
+  }
+
+  //Now we will be checking the element actually how many times it have appeared...
+  int counter=0;
+  for(int i=0;i<nums.size();i++)
+  {
+    if(nums[i]==element)
+    {
+      counter++;
+    }
+  
+  }
+
+
+
+  if(counter>(nums.size()/2))
+  {
+    return element;
+  }
+
+
+  return -1;
 }
 
 
