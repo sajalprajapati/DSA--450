@@ -13,7 +13,6 @@ int maxProfit(vector<int>& prices) {
     for(int i=0;i<prices.size();i++)
     {
         int buy=prices[i];
-        
         int sell=prices[i];
         for(int j=i+1;j<prices.size();j++)
         {
@@ -30,7 +29,7 @@ int maxProfit(vector<int>& prices) {
         }
     }
 
-    return maximumProfit;
+    return maximumProfit; 
         
 }
 

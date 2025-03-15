@@ -7,31 +7,23 @@
 using namespace std;
 
 int maxProfit(vector<int>& prices) {
-    int n=prices.size();
-    int maximumProfit=0;
+  int n = prices.size();
+  if (n < 2) return 0; // No transaction possible
 
-    int buy=prices[0];
-    int sell=prices[1];
+  int buy = prices[0];
+  int maximumProfit = 0;
 
-    
-    for(int i=0;i<prices.size();i++)
-    {
-        if(buy>prices[i])
-        {
-            buy=prices[i];
-        }
-
-        if(prices[i]>sell)
-        {
-            sell=prices[i];
-        }
-    }
-
-    maximumProfit=max(maximumProfit,sell-buy);
-
-    return maximumProfit;
-        
+  for (int i = 1; i < n; i++) { 
+      // Calculate profit if sold today
+      maximumProfit = max(maximumProfit, prices[i] - buy);
+      
+      // Update minimum buying price
+      buy = min(buy, prices[i]);
+  }
+  
+  return maximumProfit;
 }
+
 
 
 int main()
